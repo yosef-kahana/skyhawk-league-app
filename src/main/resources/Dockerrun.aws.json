@@ -1,0 +1,21 @@
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "your-account-id.dkr.ecr.us-east-1.amazonaws.com/league-app:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 8080
+    }
+  ],
+  "Logging": "/var/log/league-app",
+  "Environment": [
+    { "Name": "DB_URL", "Value": "jdbc:postgresql://your-rds-endpoint:5432/league" },
+    { "Name": "DB_USER", "Value": "your-db-user" },
+    { "Name": "DB_PASSWORD", "Value": "your-db-pass" },
+    { "Name": "CLOUDWATCH_ACCESS_KEY", "Value": "your-access-key" },
+    { "Name": "CLOUDWATCH_SECRET_KEY", "Value": "your-secret-key" },
+    { "Name": "AWS_REGION", "Value": "us-east-1" }
+  ]
+}

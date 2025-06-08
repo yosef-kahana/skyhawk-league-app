@@ -1,0 +1,23 @@
+# Maven build directory
+target/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Docker files not needed in image
+docker-compose.yml
+README.md

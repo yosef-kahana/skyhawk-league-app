@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudWatch Logs configuration for league-app service
+
+Resources:
+  LeagueAppLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /ecs/league-app
+      RetentionInDays: 14
+
+  CloudWatchIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: LeagueAppCloudWatchRole
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ecs-tasks.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: LeagueAppCloudWatchPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+
+Outputs:
+  LogGroupName:
+    Description: Log group for ECS task
+    Value: !Ref LeagueAppLogGroup

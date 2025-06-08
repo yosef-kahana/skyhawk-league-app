@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="CLOUDWATCH" class="cloudwatch.logs.appender.CloudWatchAppender">
+    <logGroupName>SkeyHawkLeagueStatisitcs</logGroupName>
+    <logStreamName>SkeyHawkLeagueStatisitcs-%d{yyyy-MM-dd}</logStreamName>
+    <region>us-east-1</region>
+    
+    <!-- Optional: comment these if using IAM role -->
+    <accessKey>YOUR_AWS_ACCESS_KEY</accessKey>
+    <secretKey>YOUR_AWS_SECRET_KEY</secretKey>
+
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+    </layout>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CLOUDWATCH" />
+  </root>
+</configuration>
